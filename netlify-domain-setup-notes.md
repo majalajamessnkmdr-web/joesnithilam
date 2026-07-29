@@ -1,94 +1,76 @@
-# Joe's Nithilam — Netlify + Domain Setup Notes
+# Joe's Nithilam — Hosting & Domain Setup Notes
 
 ## Background
 
 - Domain `joesnithilam.com` was registered on **BigRock** (login: Jude Sunil).
-- The domain's nameservers were originally pointed at Netlify's own DNS
-  (`dns1-4.p08.nsone.net`), which tied it to an **old Netlify account** we no
-  longer have login access to (login email unknown — several recovery
-  attempts didn't find it).
-- Solution: stop using Netlify-managed DNS, and instead manage DNS records
-  directly at BigRock, pointing to a **new** Netlify project deployed under
-  the current, working Netlify account (`majalajames-snkmdr`).
+  Under Orders you also have `joesnithilam.info` and an unused Titan email
+  trial — no separate hosting plan exists on BigRock, just domains.
+- Originally the domain's nameservers pointed at Netlify's own DNS
+  (`dns1-4.p08.nsone.net`), tied to an **old Netlify account** with no
+  recoverable login. Netlify support would be needed to release it
+  (via a `verified-for-netlify` TXT record + support ticket) — this path
+  was abandoned in favor of a simpler host.
+- **Final decision: moved off Netlify entirely, now hosted on GitHub Pages.**
 
-## Current working Netlify project
+## Current hosting: GitHub Pages
 
-- Project name: **elegant-cranachan-db6244**
-- Default URL: `https://elegant-cranachan-db6244.netlify.app`
-- Dashboard: `https://app.netlify.com/projects/elegant-cranachan-db6244`
-- Deployed via **drag-and-drop** (Netlify Drop) — not connected to Git.
+- Repo: `https://github.com/majalajamessnkmdr-web/joesnithilam`
+- Branch: `main`, folder: `/ (root)`
+- Free GitHub Pages URL: `https://majalajamessnkmdr-web.github.io/joesnithilam/`
+- Custom domain configured in repo Settings → Pages: `joesnithilam.com`
 
-## Step 1 — Deploy / update the site
+## How to update the site going forward
 
-1. Go to the project's **Deploys** page:
-   `https://app.netlify.com/projects/elegant-cranachan-db6244/deploys`
-2. Drag and drop the whole project folder (must include `index.html`,
-   `images/`, `css/` — not just the HTML file) into the
-   "Drag and drop your project folder here to deploy new changes" box.
-3. Netlify publishes automatically to the same URL. That's the entire
-   update process going forward — repeat this step any time the site
-   changes locally.
+The project folder on this machine (`d:\Projects\Nithilam\joe's`) is a git
+repo with `origin` set to the GitHub repo above. To publish changes:
 
-## Step 2 — Fix the domain's DNS (one-time)
+```
+git add -A
+git commit -m "describe the change"
+git push
+```
 
-### 2a. Revert nameservers at BigRock
+GitHub Pages redeploys automatically within a minute or two of any push to
+`main`. (In practice: just ask Claude to make the change and push — no
+manual steps needed.)
 
-1. Go to `myorders.bigrock.in/orders/manage/joesnithilam.com/domain`
-2. Click **Name Servers**
-3. Change from the old `dns1-4.p08.nsone.net` (Netlify-managed) to BigRock's
-   own defaults:
-   - `dns1.bigrock.in`
-   - `dns2.bigrock.in`
-   - `dns3.bigrock.in`
-   - `dns4.bigrock.in`
-4. Save. (BigRock warns this can take **24–72 hours** to propagate.)
+## DNS records at BigRock (final, working config)
 
-### 2b. Add DNS records at BigRock
+Nameservers: BigRock defaults — `dns1.bigrock.in` … `dns4.bigrock.in`
+(switched away from Netlify's `nsone.net` ones early on; no need to touch
+again).
 
-Still on the domain management page, click **DNS Records**, then:
+At `myorders.bigrock.in/orders/manage/joesnithilam.com/domain` → **DNS Records**:
 
-- **A record**
-  - Host: `@`
-  - Value: `75.2.60.5`
-- **CNAME record**
-  - Host: `www`
-  - Value: `elegant-cranachan-db6244.netlify.app`
+| Type | Host | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `majalajamessnkmdr-web.github.io` |
 
-(BigRock notes these can take **4–6 hours** to come into effect, on top of
-the nameserver propagation above.)
+These 4 A records + 1 CNAME are GitHub Pages' standard required records for
+a custom apex domain — they won't need to change unless GitHub Pages is
+ever swapped out for a different host.
 
-### 2c. Check propagation status
+DNS record changes take **4–6 hours** to fully propagate per BigRock; a
+full nameserver change can take **24–72 hours** (already done and settled
+by this point).
 
-Use `https://www.whatsmydns.net/#NS/joesnithilam.com` to check when most/all
-global DNS resolvers show the new `dns1-4.bigrock.in` nameservers (green
-checkmarks) instead of the old `nsone.net` ones.
+Check propagation anytime at:
+`https://www.whatsmydns.net/#A/joesnithilam.com`
 
-## Step 3 — Connect the domain in Netlify
+## HTTPS
 
-1. Go to the project's **Domain management** page:
-   `https://app.netlify.com/projects/elegant-cranachan-db6244/domain-management`
-2. Click **Add a domain** → **Add a domain you already own**
-3. Enter `joesnithilam.com` and confirm.
-   - ⚠️ If DNS hasn't finished propagating yet, this will fail with:
-     *"joesnithilam.com or one of its subdomains is already managed by
-     Netlify DNS on another team."*
-   - This is expected until propagation finishes — just wait and retry
-     later (check whatsmydns.net first).
-4. Once accepted, Netlify will also prompt to add `www.joesnithilam.com` —
-   add that too.
-5. Netlify automatically provisions a free HTTPS/SSL certificate (via
-   Let's Encrypt) once it verifies the domain — this can take up to an
-   hour after DNS resolves correctly.
+GitHub automatically provisions a free SSL certificate (via Let's Encrypt)
+for the custom domain once DNS resolves correctly. In repo **Settings →
+Pages**, check the **"Enforce HTTPS"** checkbox once it becomes available
+(it's grayed out until the cert is issued).
 
-## Quick reference — key values
+## Abandoned path (for reference only)
 
-| Item | Value |
-|---|---|
-| Domain registrar | BigRock (`myorders.bigrock.in`) |
-| Domain | `joesnithilam.com` |
-| New Netlify project | `elegant-cranachan-db6244` |
-| Netlify subdomain | `elegant-cranachan-db6244.netlify.app` |
-| A record (`@`) | `75.2.60.5` |
-| CNAME record (`www`) | `elegant-cranachan-db6244.netlify.app` |
-| BigRock default nameservers | `dns1.bigrock.in` … `dns4.bigrock.in` |
-| Old (Netlify-managed) nameservers | `dns1.p08.nsone.net` … `dns4.p08.nsone.net` |
+A separate Netlify project (`elegant-cranachan-db6244`, under Netlify team
+`majalajames-snkmdr`) was deployed via drag-and-drop while troubleshooting
+the domain issue. It's no longer in use for `joesnithilam.com` — safe to
+ignore or delete from Netlify if desired.
