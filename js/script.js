@@ -2,53 +2,60 @@
    Joe Nithilam Farm Stay — Main JavaScript
    ============================================================ */
 
-/* ---- Intro splash: big logo animation on first load ---- */
+/* ---- Intro splash: logo zooms in from its home-page spot, holds, then zooms back ---- */
 document.body.classList.add('intro-active');
 const siteIntro    = document.getElementById('siteIntro');
 const introLogo    = document.querySelector('.intro-logo');
 const introTextGrp = document.querySelector('.intro-text-group');
 const navLogo      = document.querySelector('.logo-leaf');
 
+function placeLogoAt(rect) {
+  introLogo.style.left   = rect.left + 'px';
+  introLogo.style.top    = rect.top + 'px';
+  introLogo.style.width  = rect.width + 'px';
+  introLogo.style.height = rect.height + 'px';
+}
+
 function endIntro() {
-  siteIntro.classList.add('intro-hide');
   document.body.classList.remove('intro-active');
+  siteIntro.style.display = 'none';
 }
 
-function flyLogoHome() {
-  if (!introLogo || !navLogo) { endIntro(); return; }
+function runIntro() {
+  if (!introLogo || !navLogo || !siteIntro) { endIntro(); return; }
 
-  const startRect = introLogo.getBoundingClientRect();
-  const endRect   = navLogo.getBoundingClientRect();
+  const homeRect = navLogo.getBoundingClientRect();
+  placeLogoAt(homeRect); // start exactly where the navbar logo sits, matching its look
 
-  introLogo.style.position = 'fixed';
-  introLogo.style.margin   = '0';
-  introLogo.style.left     = startRect.left + 'px';
-  introLogo.style.top      = startRect.top + 'px';
-  introLogo.style.width    = startRect.width + 'px';
-  introLogo.style.height   = startRect.height + 'px';
-  introLogo.style.transform = 'none';
-  introLogo.classList.add('intro-logo-fly');
+  requestAnimationFrame(() => {
+    introLogo.classList.add('intro-anim');
+    siteIntro.classList.add('intro-visible');
 
-  void introLogo.offsetWidth; // force reflow before changing target values
+    requestAnimationFrame(() => {
+      introLogo.classList.add('intro-logo-tinted');
+      const bigSize = 190;
+      placeLogoAt({
+        left:   window.innerWidth  / 2 - bigSize / 2,
+        top:    window.innerHeight / 2 - bigSize / 2 - 70,
+        width:  bigSize,
+        height: bigSize
+      });
 
-  introLogo.style.left      = endRect.left + 'px';
-  introLogo.style.top       = endRect.top + 'px';
-  introLogo.style.width     = endRect.width + 'px';
-  introLogo.style.height    = endRect.height + 'px';
-  introLogo.style.filter    = 'none';
-  introLogo.style.boxShadow = 'none';
+      setTimeout(() => introTextGrp && introTextGrp.classList.add('intro-text-visible'), 500);
 
-  if (introTextGrp) {
-    introTextGrp.style.transition = 'opacity 0.35s ease';
-    introTextGrp.style.opacity    = '0';
-  }
+      setTimeout(() => {
+        if (introTextGrp) introTextGrp.classList.remove('intro-text-visible');
+        introLogo.classList.remove('intro-logo-tinted');
+        placeLogoAt(navLogo.getBoundingClientRect()); // zoom back out to the home-page logo spot
+        siteIntro.classList.remove('intro-visible');
 
-  setTimeout(endIntro, 750);
+        setTimeout(endIntro, 900);
+      }, 2400);
+    });
+  });
 }
 
-window.addEventListener('load', () => {
-  setTimeout(flyLogoHome, 3200);
-});
+window.addEventListener('load', () => requestAnimationFrame(runIntro));
 
 /* ---- Navbar: scroll effect + active link ---- */
 const navbar    = document.getElementById('navbar');
