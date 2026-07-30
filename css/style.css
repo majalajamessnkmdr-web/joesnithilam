@@ -39,15 +39,13 @@
   justify-content: center;
   gap: 18px;
   background: var(--green-dark);
-  transform: scale(1);
-  transition: opacity 0.7s ease, visibility 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
 .site-intro.intro-hide {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: scale(0.85);
 }
 
 .intro-logo {
@@ -138,8 +136,18 @@
   0%   { transform: rotate(0deg)   scale(0.3); opacity: 0; }
   15%  { opacity: 1; }
   55%  { transform: rotate(360deg) scale(1.4); }
-  80%  { transform: rotate(360deg) scale(1.15); opacity: 1; }
-  100% { transform: rotate(360deg) scale(0.6); opacity: 1; }
+  100% { transform: rotate(360deg) scale(1.15); opacity: 1; }
+}
+
+.intro-logo-fly {
+  z-index: 10000;
+  animation: none !important;
+  transition: left 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+              top 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+              width 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+              height 0.75s cubic-bezier(0.65, 0, 0.35, 1),
+              filter 0.75s ease,
+              box-shadow 0.75s ease;
 }
 
 body.intro-active { overflow: hidden; }

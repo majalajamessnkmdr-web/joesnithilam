@@ -4,12 +4,50 @@
 
 /* ---- Intro splash: big logo animation on first load ---- */
 document.body.classList.add('intro-active');
-const siteIntro = document.getElementById('siteIntro');
+const siteIntro    = document.getElementById('siteIntro');
+const introLogo    = document.querySelector('.intro-logo');
+const introTextGrp = document.querySelector('.intro-text-group');
+const navLogo      = document.querySelector('.logo-leaf');
+
+function endIntro() {
+  siteIntro.classList.add('intro-hide');
+  document.body.classList.remove('intro-active');
+}
+
+function flyLogoHome() {
+  if (!introLogo || !navLogo) { endIntro(); return; }
+
+  const startRect = introLogo.getBoundingClientRect();
+  const endRect   = navLogo.getBoundingClientRect();
+
+  introLogo.style.position = 'fixed';
+  introLogo.style.margin   = '0';
+  introLogo.style.left     = startRect.left + 'px';
+  introLogo.style.top      = startRect.top + 'px';
+  introLogo.style.width    = startRect.width + 'px';
+  introLogo.style.height   = startRect.height + 'px';
+  introLogo.style.transform = 'none';
+  introLogo.classList.add('intro-logo-fly');
+
+  void introLogo.offsetWidth; // force reflow before changing target values
+
+  introLogo.style.left      = endRect.left + 'px';
+  introLogo.style.top       = endRect.top + 'px';
+  introLogo.style.width     = endRect.width + 'px';
+  introLogo.style.height    = endRect.height + 'px';
+  introLogo.style.filter    = 'none';
+  introLogo.style.boxShadow = 'none';
+
+  if (introTextGrp) {
+    introTextGrp.style.transition = 'opacity 0.35s ease';
+    introTextGrp.style.opacity    = '0';
+  }
+
+  setTimeout(endIntro, 750);
+}
+
 window.addEventListener('load', () => {
-  setTimeout(() => {
-    siteIntro.classList.add('intro-hide');
-    document.body.classList.remove('intro-active');
-  }, 4000);
+  setTimeout(flyLogoHome, 3200);
 });
 
 /* ---- Navbar: scroll effect + active link ---- */
