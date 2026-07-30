@@ -81,9 +81,16 @@
 
 .intro-paddy span {
   position: absolute;
-  bottom: -2%;
+  bottom: -4%;
   width: 46px;
   height: 260px;
+  background-image: url('../images/organic.png');
+  background-size: 280px auto;
+  background-repeat: no-repeat;
+  border-radius: 40px 40px 8px 8px;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,0.3));
+  -webkit-mask-image: linear-gradient(to top, black 60%, transparent 98%);
+          mask-image: linear-gradient(to top, black 60%, transparent 98%);
   opacity: 0;
   transform-origin: bottom center;
   animation-name: paddyGrow;
@@ -91,25 +98,18 @@
   animation-iteration-count: infinite;
 }
 
-.intro-paddy span svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.25));
-}
-
-.intro-paddy span:nth-child(1)  { left: 2%;  width: 40px; height: 220px; animation-duration: 6.5s; animation-delay: 0s; }
-.intro-paddy span:nth-child(2)  { left: 12%; width: 54px; height: 300px; animation-duration: 7.5s; animation-delay: 0.6s; }
-.intro-paddy span:nth-child(3)  { left: 23%; width: 38px; height: 200px; animation-duration: 6s;   animation-delay: 1.2s; }
-.intro-paddy span:nth-child(4)  { left: 33%; width: 50px; height: 280px; animation-duration: 8s;   animation-delay: 0.3s; }
-.intro-paddy span:nth-child(5)  { left: 43%; width: 42px; height: 230px; animation-duration: 7s;   animation-delay: 1.6s; }
-.intro-paddy span:nth-child(6)  { left: 53%; width: 52px; height: 290px; animation-duration: 6.8s; animation-delay: 0.9s; }
-.intro-paddy span:nth-child(7)  { left: 63%; width: 40px; height: 210px; animation-duration: 7.8s; animation-delay: 0.2s; }
-.intro-paddy span:nth-child(8)  { left: 73%; width: 46px; height: 260px; animation-duration: 6.3s; animation-delay: 1.4s; }
-.intro-paddy span:nth-child(9)  { left: 82%; width: 54px; height: 310px; animation-duration: 7.2s; animation-delay: 0.7s; }
-.intro-paddy span:nth-child(10) { left: 90%; width: 38px; height: 190px; animation-duration: 6.6s; animation-delay: 1.9s; }
-.intro-paddy span:nth-child(11) { left: 96%; width: 42px; height: 240px; animation-duration: 8.2s; animation-delay: 0.4s; }
-.intro-paddy span:nth-child(12) { left: 58%; width: 36px; height: 170px; animation-duration: 5.8s; animation-delay: 2.2s; }
+.intro-paddy span:nth-child(1)  { left: 2%;  width: 40px; height: 220px; background-position: -10px  bottom; animation-duration: 6.5s; animation-delay: 0s; }
+.intro-paddy span:nth-child(2)  { left: 12%; width: 54px; height: 300px; background-position: -60px  bottom; animation-duration: 7.5s; animation-delay: 0.6s; }
+.intro-paddy span:nth-child(3)  { left: 23%; width: 38px; height: 200px; background-position: -110px bottom; animation-duration: 6s;   animation-delay: 1.2s; }
+.intro-paddy span:nth-child(4)  { left: 33%; width: 50px; height: 280px; background-position: -30px  bottom; animation-duration: 8s;   animation-delay: 0.3s; }
+.intro-paddy span:nth-child(5)  { left: 43%; width: 42px; height: 230px; background-position: -150px bottom; animation-duration: 7s;   animation-delay: 1.6s; }
+.intro-paddy span:nth-child(6)  { left: 53%; width: 52px; height: 290px; background-position: -80px  bottom; animation-duration: 6.8s; animation-delay: 0.9s; }
+.intro-paddy span:nth-child(7)  { left: 63%; width: 40px; height: 210px; background-position: -190px bottom; animation-duration: 7.8s; animation-delay: 0.2s; }
+.intro-paddy span:nth-child(8)  { left: 73%; width: 46px; height: 260px; background-position: -5px   bottom; animation-duration: 6.3s; animation-delay: 1.4s; }
+.intro-paddy span:nth-child(9)  { left: 82%; width: 54px; height: 310px; background-position: -130px bottom; animation-duration: 7.2s; animation-delay: 0.7s; }
+.intro-paddy span:nth-child(10) { left: 90%; width: 38px; height: 190px; background-position: -170px bottom; animation-duration: 6.6s; animation-delay: 1.9s; }
+.intro-paddy span:nth-child(11) { left: 96%; width: 42px; height: 240px; background-position: -100px bottom; animation-duration: 8.2s; animation-delay: 0.4s; }
+.intro-paddy span:nth-child(12) { left: 58%; width: 36px; height: 170px; background-position: -50px  bottom; animation-duration: 5.8s; animation-delay: 2.2s; }
 
 @keyframes paddyGrow {
   0%   { opacity: 0; transform: scaleY(0)    rotate(0deg); }
