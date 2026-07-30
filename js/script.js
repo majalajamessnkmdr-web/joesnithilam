@@ -2,6 +2,16 @@
    Joe Nithilam Farm Stay — Main JavaScript
    ============================================================ */
 
+/* ---- Intro splash: big logo animation on first load ---- */
+document.body.classList.add('intro-active');
+const siteIntro = document.getElementById('siteIntro');
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    siteIntro.classList.add('intro-hide');
+    document.body.classList.remove('intro-active');
+  }, 4000);
+});
+
 /* ---- Navbar: scroll effect + active link ---- */
 const navbar    = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
