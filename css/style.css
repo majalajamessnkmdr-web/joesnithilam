@@ -94,11 +94,23 @@
 
 @media (max-width: 768px) {
   .intro-paddy {
-    height: 100vh;
+    inset: 0;
+    height: auto;
     max-height: none;
     min-height: 0;
-    -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
-            mask-image: linear-gradient(to top, black 80%, transparent 100%);
+    background-position: center;
+    -webkit-mask-image: none;
+            mask-image: none;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .intro-paddy::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(26,71,49,0.55), rgba(26,71,49,0.8));
   }
 }
 
