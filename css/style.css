@@ -92,6 +92,16 @@
   animation: paddyFieldGrow 9s ease-in-out infinite;
 }
 
+@media (max-width: 768px) {
+  .intro-paddy {
+    height: 100vh;
+    max-height: none;
+    min-height: 0;
+    -webkit-mask-image: linear-gradient(to top, black 80%, transparent 100%);
+            mask-image: linear-gradient(to top, black 80%, transparent 100%);
+  }
+}
+
 @keyframes paddyFieldGrow {
   0%   { opacity: 0; transform: scaleY(0); }
   12%  { opacity: 1; }
