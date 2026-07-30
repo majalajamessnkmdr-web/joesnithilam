@@ -70,8 +70,8 @@
   filter: grayscale(1) sepia(1) hue-rotate(70deg) saturate(4) brightness(0.95);
 }
 
-/* ---- Intro splash: sprinkling flowers ---- */
-.intro-flowers {
+/* ---- Intro splash: paddy sprouting up from the ground ---- */
+.intro-paddy {
   position: absolute;
   inset: 0;
   overflow: hidden;
@@ -79,35 +79,39 @@
   z-index: 1;
 }
 
-.intro-flowers span {
+.intro-paddy span {
   position: absolute;
-  top: -10%;
-  font-size: 1.6rem;
+  bottom: -4%;
+  font-size: 2rem;
   opacity: 0;
-  animation-name: introFlowerFall;
-  animation-timing-function: ease-in;
+  transform-origin: bottom center;
+  animation-name: paddyGrow;
+  animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
 }
 
-.intro-flowers span:nth-child(1)  { left: 4%;  font-size: 1.4rem; animation-duration: 5.5s; animation-delay: 0s; }
-.intro-flowers span:nth-child(2)  { left: 14%; font-size: 1.9rem; animation-duration: 6.5s; animation-delay: 0.6s; }
-.intro-flowers span:nth-child(3)  { left: 24%; font-size: 1.3rem; animation-duration: 5s;   animation-delay: 1.2s; }
-.intro-flowers span:nth-child(4)  { left: 34%; font-size: 1.7rem; animation-duration: 7s;   animation-delay: 0.3s; }
-.intro-flowers span:nth-child(5)  { left: 44%; font-size: 1.5rem; animation-duration: 6s;   animation-delay: 1.6s; }
-.intro-flowers span:nth-child(6)  { left: 54%; font-size: 1.8rem; animation-duration: 5.8s; animation-delay: 0.9s; }
-.intro-flowers span:nth-child(7)  { left: 64%; font-size: 1.4rem; animation-duration: 6.8s; animation-delay: 0.2s; }
-.intro-flowers span:nth-child(8)  { left: 74%; font-size: 1.6rem; animation-duration: 5.3s; animation-delay: 1.4s; }
-.intro-flowers span:nth-child(9)  { left: 82%; font-size: 1.9rem; animation-duration: 6.2s; animation-delay: 0.7s; }
-.intro-flowers span:nth-child(10) { left: 90%; font-size: 1.3rem; animation-duration: 5.6s; animation-delay: 1.9s; }
-.intro-flowers span:nth-child(11) { left: 96%; font-size: 1.5rem; animation-duration: 7.2s; animation-delay: 0.4s; }
-.intro-flowers span:nth-child(12) { left: 60%; font-size: 1.2rem; animation-duration: 4.8s; animation-delay: 2.2s; }
+.intro-paddy span:nth-child(1)  { left: 4%;  font-size: 1.8rem; animation-duration: 5.5s; animation-delay: 0s; }
+.intro-paddy span:nth-child(2)  { left: 14%; font-size: 2.4rem; animation-duration: 6.5s; animation-delay: 0.6s; }
+.intro-paddy span:nth-child(3)  { left: 24%; font-size: 1.7rem; animation-duration: 5s;   animation-delay: 1.2s; }
+.intro-paddy span:nth-child(4)  { left: 34%; font-size: 2.2rem; animation-duration: 7s;   animation-delay: 0.3s; }
+.intro-paddy span:nth-child(5)  { left: 44%; font-size: 1.9rem; animation-duration: 6s;   animation-delay: 1.6s; }
+.intro-paddy span:nth-child(6)  { left: 54%; font-size: 2.3rem; animation-duration: 5.8s; animation-delay: 0.9s; }
+.intro-paddy span:nth-child(7)  { left: 64%; font-size: 1.8rem; animation-duration: 6.8s; animation-delay: 0.2s; }
+.intro-paddy span:nth-child(8)  { left: 74%; font-size: 2.1rem; animation-duration: 5.3s; animation-delay: 1.4s; }
+.intro-paddy span:nth-child(9)  { left: 82%; font-size: 2.4rem; animation-duration: 6.2s; animation-delay: 0.7s; }
+.intro-paddy span:nth-child(10) { left: 90%; font-size: 1.7rem; animation-duration: 5.6s; animation-delay: 1.9s; }
+.intro-paddy span:nth-child(11) { left: 96%; font-size: 1.9rem; animation-duration: 7.2s; animation-delay: 0.4s; }
+.intro-paddy span:nth-child(12) { left: 60%; font-size: 1.6rem; animation-duration: 4.8s; animation-delay: 2.2s; }
 
-@keyframes introFlowerFall {
-  0%   { opacity: 0; top: -10%;  transform: translateX(0)    rotate(0deg); }
+@keyframes paddyGrow {
+  0%   { opacity: 0; transform: scaleY(0)   rotate(0deg); }
   10%  { opacity: 1; }
-  50%  { transform: translateX(24px) rotate(180deg); }
-  90%  { opacity: 1; }
-  100% { opacity: 0; top: 110%; transform: translateX(-18px) rotate(360deg); }
+  30%  { transform: scaleY(1) rotate(-3deg); }
+  45%  { transform: scaleY(1) rotate(3deg); }
+  60%  { transform: scaleY(1) rotate(-2deg); }
+  75%  { opacity: 1; transform: scaleY(1) rotate(2deg); }
+  90%  { opacity: 1; transform: scaleY(1) rotate(0deg); }
+  100% { opacity: 0; transform: scaleY(0) rotate(0deg); }
 }
 
 .intro-text-group {
