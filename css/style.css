@@ -59,6 +59,70 @@
   animation: introSpinZoom 3.2s ease-in-out forwards;
 }
 
+.intro-house {
+  width: 240px;
+  max-width: 60vw;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 3px solid rgba(255,255,255,0.15);
+  opacity: 0;
+  transform: translateY(-24px) scale(0.9);
+  animation: introHouseReveal 1.1s ease-out 0.15s forwards;
+}
+
+.intro-house img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes introHouseReveal {
+  0%   { opacity: 0; transform: translateY(-24px) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ---- Intro splash: sprinkling flowers ---- */
+.intro-flowers {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.intro-flowers span {
+  position: absolute;
+  top: -10%;
+  font-size: 1.6rem;
+  opacity: 0;
+  animation-name: introFlowerFall;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+}
+
+.intro-flowers span:nth-child(1)  { left: 4%;  font-size: 1.4rem; animation-duration: 5.5s; animation-delay: 0s; }
+.intro-flowers span:nth-child(2)  { left: 14%; font-size: 1.9rem; animation-duration: 6.5s; animation-delay: 0.6s; }
+.intro-flowers span:nth-child(3)  { left: 24%; font-size: 1.3rem; animation-duration: 5s;   animation-delay: 1.2s; }
+.intro-flowers span:nth-child(4)  { left: 34%; font-size: 1.7rem; animation-duration: 7s;   animation-delay: 0.3s; }
+.intro-flowers span:nth-child(5)  { left: 44%; font-size: 1.5rem; animation-duration: 6s;   animation-delay: 1.6s; }
+.intro-flowers span:nth-child(6)  { left: 54%; font-size: 1.8rem; animation-duration: 5.8s; animation-delay: 0.9s; }
+.intro-flowers span:nth-child(7)  { left: 64%; font-size: 1.4rem; animation-duration: 6.8s; animation-delay: 0.2s; }
+.intro-flowers span:nth-child(8)  { left: 74%; font-size: 1.6rem; animation-duration: 5.3s; animation-delay: 1.4s; }
+.intro-flowers span:nth-child(9)  { left: 82%; font-size: 1.9rem; animation-duration: 6.2s; animation-delay: 0.7s; }
+.intro-flowers span:nth-child(10) { left: 90%; font-size: 1.3rem; animation-duration: 5.6s; animation-delay: 1.9s; }
+.intro-flowers span:nth-child(11) { left: 96%; font-size: 1.5rem; animation-duration: 7.2s; animation-delay: 0.4s; }
+.intro-flowers span:nth-child(12) { left: 60%; font-size: 1.2rem; animation-duration: 4.8s; animation-delay: 2.2s; }
+
+@keyframes introFlowerFall {
+  0%   { opacity: 0; top: -10%;  transform: translateX(0)    rotate(0deg); }
+  10%  { opacity: 1; }
+  50%  { transform: translateX(24px) rotate(180deg); }
+  90%  { opacity: 1; }
+  100% { opacity: 0; top: 110%; transform: translateX(-18px) rotate(360deg); }
+}
+
 .intro-text-group {
   display: flex;
   flex-direction: column;
