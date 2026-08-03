@@ -178,6 +178,12 @@
         <h3>Stargazing</h3>
         <p>Far from city lights — experience a breathtaking night sky with thousands of visible stars.</p>
       </div>
+      <div class="amenity-card wellness-toggle-card" style="background-image:url('images/school.png');cursor:pointer" onclick="toggleSchool()" id="schoolCard">
+        <div class="amenity-shine"></div>
+        <h3>School Visits</h3>
+        <p>Farm Tour · Animal Feeding · Organic Farming Demo · Fun Learning Games — Click to explore.</p>
+        <span class="wellness-arrow"><i class="fas fa-chevron-down"></i></span>
+      </div>
     </div>
 
     <!-- Wellness Dropdown Panel -->
@@ -237,6 +243,85 @@
       </div>
       <div class="wellness-cta">
         <a href="https://wa.me/919884835661?text=Hi%2C+I%27m+interested+in+the+Wellness+experiences+at+Joe+Nithilam!" class="btn btn-primary" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
+        </a>
+      </div>
+    </div>
+
+    <!-- School Visit Activities Dropdown Panel -->
+    <div class="wellness-panel" id="schoolPanel">
+      <div class="wellness-grid">
+        <div class="wellness-item" onclick="this.classList.toggle('flipped')">
+          <div class="wf-inner">
+            <div class="wf-front" style="background-image:url('images/walk.png')">
+              <div class="wf-front-overlay"></div>
+              <div class="wf-front-label">
+                <div class="wf-icon"><i class="fas fa-leaf"></i></div>
+                <h4>Farm &amp; Nature Walk</h4>
+                <span class="wf-tap-hint">Tap to know more</span>
+              </div>
+            </div>
+            <div class="wf-back">
+              <div class="wf-icon"><i class="fas fa-leaf"></i></div>
+              <h4>Farm &amp; Nature Walk</h4>
+              <p>A guided walk through paddy fields and gardens where students learn about crops, soil, and rural ecosystems.</p>
+            </div>
+          </div>
+        </div>
+        <div class="wellness-item" onclick="this.classList.toggle('flipped')">
+          <div class="wf-inner">
+            <div class="wf-front" style="background-image:url('images/hen.png')">
+              <div class="wf-front-overlay"></div>
+              <div class="wf-front-label">
+                <div class="wf-icon"><i class="fas fa-paw"></i></div>
+                <h4>Animal Feeding</h4>
+                <span class="wf-tap-hint">Tap to know more</span>
+              </div>
+            </div>
+            <div class="wf-back">
+              <div class="wf-icon"><i class="fas fa-paw"></i></div>
+              <h4>Animal Feeding</h4>
+              <p>Hands-on time with cows, goats, chickens, and rabbits — teaching kids kindness and care for animals.</p>
+            </div>
+          </div>
+        </div>
+        <div class="wellness-item" onclick="this.classList.toggle('flipped')">
+          <div class="wf-inner">
+            <div class="wf-front" style="background-image:url('images/organic.png')">
+              <div class="wf-front-overlay"></div>
+              <div class="wf-front-label">
+                <div class="wf-icon"><i class="fas fa-seedling"></i></div>
+                <h4>Organic Farming Demo</h4>
+                <span class="wf-tap-hint">Tap to know more</span>
+              </div>
+            </div>
+            <div class="wf-back">
+              <div class="wf-icon"><i class="fas fa-seedling"></i></div>
+              <h4>Organic Farming Demo</h4>
+              <p>Students sow seeds and water plants, learning the basics of organic, chemical-free farming first-hand.</p>
+            </div>
+          </div>
+        </div>
+        <div class="wellness-item" onclick="this.classList.toggle('flipped')">
+          <div class="wf-inner">
+            <div class="wf-front" style="background-image:url('images/games.png')">
+              <div class="wf-front-overlay"></div>
+              <div class="wf-front-label">
+                <div class="wf-icon"><i class="fas fa-puzzle-piece"></i></div>
+                <h4>Fun Learning Games</h4>
+                <span class="wf-tap-hint">Tap to know more</span>
+              </div>
+            </div>
+            <div class="wf-back">
+              <div class="wf-icon"><i class="fas fa-puzzle-piece"></i></div>
+              <h4>Fun Learning Games</h4>
+              <p>Traditional village games and nature quizzes that make learning about farm life active and memorable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wellness-cta">
+        <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+a+School+Visit+at+Joe+Nithilam!" class="btn btn-primary" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp"></i> Enquire on WhatsApp
         </a>
       </div>
@@ -767,9 +852,9 @@
 
 <script src="js/script.js"></script>
 <script>
-function toggleWellness() {
-  var panel = document.getElementById('wellnessPanel');
-  var card  = document.getElementById('wellnessCard');
+function toggleDropdownPanel(panelId, cardId) {
+  var panel = document.getElementById(panelId);
+  var card  = document.getElementById(cardId);
   if (panel.classList.contains('open')) {
     panel.style.maxHeight = '0';
     panel.classList.remove('open');
@@ -782,6 +867,12 @@ function toggleWellness() {
       panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 100);
   }
+}
+function toggleWellness() {
+  toggleDropdownPanel('wellnessPanel', 'wellnessCard');
+}
+function toggleSchool() {
+  toggleDropdownPanel('schoolPanel', 'schoolCard');
 }
 </script>
 <style>
