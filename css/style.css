@@ -532,6 +532,18 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .about-badge strong { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; }
 .about-badge span, .about-badge small { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.85; }
+.about-video {
+  margin-top: 64px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.about-video video {
+  width: 100%;
+  max-height: 560px;
+  display: block;
+  background: #000;
+}
 
 .about-content .section-title { margin-bottom: 16px; }
 .about-lead { font-size: 1.05rem; color: var(--text-dark); font-weight: 500; margin-bottom: 16px; }
