@@ -1109,7 +1109,21 @@
 function toggleDropdownPanel(panelId, cardId) {
   var panel = document.getElementById(panelId);
   var card  = document.getElementById(cardId);
-  if (panel.classList.contains('open')) {
+  var wasOpen = panel.classList.contains('open');
+
+  document.querySelectorAll('.wellness-panel.open').forEach(function(openPanel) {
+    if (openPanel !== panel) {
+      openPanel.style.maxHeight = '0';
+      openPanel.classList.remove('open');
+    }
+  });
+  document.querySelectorAll('.wellness-toggle-card.active').forEach(function(openCard) {
+    if (openCard !== card) {
+      openCard.classList.remove('active');
+    }
+  });
+
+  if (wasOpen) {
     panel.style.maxHeight = '0';
     panel.classList.remove('open');
     card.classList.remove('active');
