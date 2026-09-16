@@ -20,6 +20,47 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- Structured data: helps search & AI answer engines surface Joe's Nithilam -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LodgingBusiness",
+    "name": "Joe's Nithilam Farm Stay",
+    "image": "https://www.joesnithilam.com/images/home.jpeg",
+    "url": "https://www.joesnithilam.com",
+    "telephone": "+91-99623-39398",
+    "priceRange": "₹1,000–₹10,000",
+    "description": "Joe's Nithilam is a farm stay near Chennai in Puthagaram, Wallajabad, Kanchipuram district, Tamil Nadu, offering farming, farm animals, nature walks, traditional Tamil games, school farm visits, and countryside stays.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Puthagaram, Wallajabad",
+      "addressLocality": "Kanchipuram",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "631605",
+      "addressCountry": "IN"
+    },
+    "areaServed": ["Chennai", "Kanchipuram", "Wallajabad", "Tamil Nadu"],
+    "hasMap": "https://maps.app.goo.gl/99YgtG8kdBq2an836",
+    "sameAs": ["https://wa.me/919884835661"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is Joe's Nithilam?","acceptedAnswer":{"@type":"Answer","text":"Joe's Nithilam is a farm stay and rural farm experience in Puthagaram, Wallajabad, Kanchipuram district, Tamil Nadu. Guests can experience farming, farm animals, nature walks, traditional games, outdoor activities, stargazing, bonfires, and a peaceful countryside environment."}},
+      {"@type":"Question","name":"Where is Joe's Nithilam located, and how far is it from Chennai?","acceptedAnswer":{"@type":"Answer","text":"Joe's Nithilam is located at Puthagaram, Wallajabad, Kanchipuram district, Tamil Nadu — approximately 50 km from Chennai and around 1 to 1.10 hours by road, depending on traffic."}},
+      {"@type":"Question","name":"What are the check-in and check-out times?","acceptedAnswer":{"@type":"Answer","text":"Check-in is at 10:00 AM and check-out is at 09:00 AM. Early check-in or late check-out can be arranged on request, subject to availability."}},
+      {"@type":"Question","name":"How many people can the farm accommodate?","acceptedAnswer":{"@type":"Answer","text":"There is 1 farmhouse that can comfortably accommodate up to 3-5 guests. Larger groups and special events can be discussed separately."}},
+      {"@type":"Question","name":"What food do you serve?","acceptedAnswer":{"@type":"Answer","text":"Traditional home-cooked South Indian meals are arranged — rice, sambar, rasam, kootu, chutneys, and fresh salads. Non-vegetarian options are available on advance request, and online delivery via Swiggy/Zomato is also available."}},
+      {"@type":"Question","name":"What can guests do at Joe's Nithilam?","acceptedAnswer":{"@type":"Answer","text":"Guests can take part in farming activities, interact with farm animals, go on nature walks, enjoy the pumpset and tank, play outdoor and traditional Tamil games, watch the sunset, go bird watching, enjoy a bonfire, listen to music, relax in the garden, and stargaze."}},
+      {"@type":"Question","name":"Is Joe's Nithilam suitable for children and family outings?","acceptedAnswer":{"@type":"Answer","text":"Yes. Children love the farm animals, farming, nature walks, outdoor and traditional Tamil games, and the pumpset and tank with adult supervision. Children below 5 years stay free."}},
+      {"@type":"Question","name":"Is Wi-Fi available at the farm?","acceptedAnswer":{"@type":"Answer","text":"Wi-Fi is currently not available at the farm, allowing guests to disconnect for a digital detox. Mobile network coverage is available for most operators."}},
+      {"@type":"Question","name":"What is your cancellation policy?","acceptedAnswer":{"@type":"Answer","text":"Cancellations 7+ days before check-in receive a full refund. Cancellations 3–7 days before receive a 50% refund. Cancellations within 3 days are non-refundable."}}
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -45,12 +86,12 @@
     </a>
     <ul class="nav-menu" id="navMenu">
       <li><a href="#home" class="nav-link active">Home</a></li>
-      <li><a href="#about" class="nav-link">About</a></li>
-      <li><a href="#amenities" class="nav-link">Facilities</a></li>
-      <li><a href="#specials" class="nav-link">Specials</a></li>
-      <li><a href="#gallery" class="nav-link">Gallery</a></li>
-      <li><a href="#faq" class="nav-link">FAQ</a></li>
-      <li><a href="#contact" class="nav-link">Contact</a></li>
+      <li><a href="about.html" class="nav-link">About</a></li>
+      <li><a href="facilities.html" class="nav-link">Facilities</a></li>
+      <li><a href="things-to-do.html" class="nav-link">Things to Do</a></li>
+      <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+      <li><a href="faq.html" class="nav-link">FAQ</a></li>
+      <li><a href="contact.html" class="nav-link">Contact</a></li>
       <li class="nav-mobile-cta-item">
         <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+book+Joe+Nithilam+Farm+Stay!" class="nav-mobile-cta" target="_blank" rel="noopener">
           <i class="fab fa-whatsapp"></i> Book Now
@@ -134,20 +175,72 @@
 <section class="section section-alt" id="amenities">
   <div class="container">
     <p class="section-tag text-center">What We Offer</p>
-    <h2 class="section-title text-center">Facilities &amp; Activities</h2>
-    <p class="section-desc text-center">From swimming in natural ponds to harvesting vegetables, Joe's Nithilam offers rich, hands-on experiences for every guest.</p>
+    <h2 class="section-title text-center">Facilities</h2>
+    <p class="section-desc text-center">Everything guests need for a comfortable, worry-free stay at Joe's Nithilam.</p>
     <div class="amenities-grid">
-      <div class="amenity-card wellness-toggle-card" style="background-image:url('images/school1.png');cursor:pointer" onclick="toggleSchool()" id="schoolCard">
+      <div class="amenity-card" style="background-image:url('images/house1.jpeg')">
         <div class="amenity-shine"></div>
-        <h3>School Visits</h3>
-        <p>Farm Tour · Animal Feeding · Farming Demo · Fun Learning Games — 👉 Click here for the full scoop!</p>
+        <h3>The Farmhouse</h3>
+        <p>1 private farmhouse · Sleeps 3–5 guests · Check-in 10 AM / Check-out 9 AM · Not a shared resort room</p>
+      </div>
+      <div class="amenity-card" style="background-image:url('images/meals.png')">
+        <div class="amenity-shine"></div>
+        <h3>Food &amp; Meals</h3>
+        <p>Home-cooked South Indian meals · Veg &amp; non-veg on request · Swiggy/Zomato delivery also available</p>
+      </div>
+      <div class="amenity-card" style="background-image:url('images/1.jpeg')">
+        <div class="amenity-shine"></div>
+        <h3>Car Parking</h3>
+        <p>Free on-site parking for guests' vehicles within the farm premises</p>
+      </div>
+      <div class="amenity-card" style="background-image:url('images/nature.jpeg')">
+        <div class="amenity-shine"></div>
+        <h3>Fenced Farm</h3>
+        <p>A secure, fenced farm boundary — safe for children to explore and play</p>
+      </div>
+      <div class="amenity-card wellness-toggle-card" style="background-image:url('images/walk.png');cursor:pointer" onclick="toggleDropdownPanel('templesPanel','templesCard')" id="templesCard">
+        <div class="amenity-shine"></div>
+        <h3>Nearby Places to Visit</h3>
+        <p>Quiet Chola-period temples within 15 km — 👉 Click here for the full list!</p>
         <span class="wellness-arrow"><i class="fas fa-chevron-down"></i></span>
       </div>
-      <div class="amenity-card wellness-toggle-card" style="background-image:url('images/rest.png');cursor:pointer" onclick="toggleWellness()" id="wellnessCard">
-        <div class="amenity-shine"></div>
-        <h3>Family Fun &amp; Relaxation</h3>
-        <p>Farming · Swimming Pond · Farm Animals · Bonfire · Stargazing &amp; more — 👉 Click here for the full scoop!</p>
-        <span class="wellness-arrow"><i class="fas fa-chevron-down"></i></span>
+    </div>
+
+    <!-- Nearby Temples Dropdown Panel -->
+    <div class="wellness-panel" id="templesPanel">
+      <div style="padding:28px 28px 8px;">
+        <h4 class="school-schedule-title"><i class="fas fa-place-of-worship"></i> Nearby Historic Temples</h4>
+        <p class="school-schedule-sub" style="max-width:none;">Walajabad and its surrounding villages have a wealth of ancient temples, mostly from the Chola period (10th–13th centuries), many of which are quiet and less commercialized.</p>
+      </div>
+      <div class="temple-grid" style="padding:0 28px 28px;">
+        <div class="temple-card">
+          <span class="temple-distance"><i class="fas fa-location-dot"></i> approx. 6 km</span>
+          <h3>Thangi Kailasanathar Temple</h3>
+          <p>A small temple hidden among rice paddies, with its base dating to the 10th–11th century Chola period and its upper structure later rebuilt. Inside is a rare stucco relief on the arch depicting a cow performing abhisheka (ritual bathing) for Shiva with its milk, reflecting the local legend. The temple sits on the northward-flowing bank of the Palar River, considered by locals to be as sacred as Kashi.</p>
+        </div>
+        <div class="temple-card">
+          <span class="temple-distance"><i class="fas fa-location-dot"></i> approx. 4 km</span>
+          <h3>Thammanur Ekambareswarar Temple</h3>
+          <p>A 12th–13th century Chola-period temple in the village of Thammanur, surrounded by paddy and sugarcane fields — a classic example of a village temple from the later Chola period.</p>
+        </div>
+        <div class="temple-card">
+          <span class="temple-distance"><i class="fas fa-location-dot"></i> approx. 14 km</span>
+          <h3>Kavanthandalam Chidambareswarar Temple</h3>
+          <p>A Shiva temple built in the 12th century by the Cholas, on the north bank of the Cheyyar River. The temple faces west; the main deity is a lingam form, and the goddess is housed in a separate shrine. Inside is also a Durga relief dating to the 12th century.</p>
+        </div>
+        <div class="temple-card">
+          <span class="temple-distance"><i class="fas fa-location-dot"></i> approx. 8 km</span>
+          <h3>Erivoy Village Kasi Viswanathar Temple</h3>
+          <p>Said to have originally been built around the 12th–13th century and later renovated during the Vijayanagara-Nayaka period, with Telugu inscriptions remaining on the walls. Located on the bank of the Palar River, it is considered part of the "Pancha Kasi Kshetram" (five sacred sites of Kashi) in the region. The temple is small and usually quiet.</p>
+        </div>
+        <div class="temple-card">
+          <span class="temple-distance"><i class="fas fa-location-dot"></i> on the way to Kanchipuram</span>
+          <h3>Karukupetai Kasi Vishwanathar Temple</h3>
+          <p>Also part of the local "Pancha Kasi Kshetram," said to be approximately 1000 years old. It houses a small lingam brought from Kashi, similar to the one at the Kashi Vishwanath Temple.</p>
+        </div>
+      </div>
+      <div style="padding:0 28px 28px;">
+        <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.6;"><i class="fas fa-lightbulb" style="color:var(--accent);margin-right:6px;"></i>These are mostly village temples with small visitor numbers and irregular opening hours — visit in the morning (7:00–11:00) or evening (17:00–20:00) for the best chance of finding them open, and maintain a quiet, respectful demeanor.</p>
       </div>
     </div>
 
@@ -642,7 +735,7 @@
           <div class="special-icon"><i class="fas fa-birthday-cake"></i></div>
           <h3>Birthday Celebration</h3>
           <p>Celebrate your special day surrounded by nature, loved ones, and cake.</p>
-          <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+a+Birthday+at+Joe+Nithilam!" target="_blank" rel="noopener" class="special-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          <a href="birthday-family-celebrations.html" class="special-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="special-card">
@@ -653,7 +746,7 @@
           <div class="special-icon"><i class="fas fa-heart"></i></div>
           <h3>Anniversary Retreat</h3>
           <p>Rekindle romance in the most beautiful natural setting — tailored for couples.</p>
-          <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+an+Anniversary+at+Joe+Nithilam!" target="_blank" rel="noopener" class="special-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          <a href="farm-stay-couples.html" class="special-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="special-card">
@@ -664,7 +757,7 @@
           <div class="special-icon"><i class="fas fa-child"></i></div>
           <h3>School &amp; Farm Trips</h3>
           <p>Educational visits for children — learn about nature, animals, and farming.</p>
-          <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+a+School+Trip+to+Joe+Nithilam!" target="_blank" rel="noopener" class="special-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          <a href="school-farm-visit-chennai.html" class="special-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="special-card">
@@ -675,7 +768,7 @@
           <div class="special-icon"><i class="fas fa-laptop"></i></div>
           <h3>Workcation</h3>
           <p>Work remotely from the farm — enjoy nature's calm while staying productive.</p>
-          <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+a+Workcation+at+Joe+Nithilam!" target="_blank" rel="noopener" class="special-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          <a href="workcation-group-offsite.html" class="special-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="special-card">
@@ -686,7 +779,7 @@
           <div class="special-icon"><i class="fas fa-users"></i></div>
           <h3>Family Reunion</h3>
           <p>Reunite the whole family in our spacious farmstay for an unforgettable experience.</p>
-          <a href="https://wa.me/919884835661?text=Hi%2C+I%27d+like+to+plan+a+Family+Reunion+at+Joe+Nithilam!" target="_blank" rel="noopener" class="special-link">Enquire <i class="fas fa-arrow-right"></i></a>
+          <a href="family-farm-outing-chennai.html" class="special-link">Learn more <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -880,20 +973,29 @@
       <div class="faq-list">
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
+            <span>What is Joe's Nithilam?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a">
+            <p>Joe's Nithilam is a farm stay and rural farm experience in Puthagaram, Wallajabad, Kanchipuram district, Tamil Nadu. Guests can experience farming, farm animals, nature walks, traditional games, outdoor activities, stargazing, bonfires, and a peaceful countryside environment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Where is Joe's Nithilam located, and how far is it from Chennai?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a">
+            <p>Joe's Nithilam is located at Puthagaram, Wallajabad, Kanchipuram district, Tamil Nadu — approximately 50 km from Chennai and around 1 to 1.10 hours by road, depending on traffic. We share the exact Google Maps location upon booking.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
             <span>What are the check-in and check-out times?</span>
             <i class="fas fa-plus"></i>
           </button>
           <div class="faq-a">
             <p>Check-in is at 10:00 AM and check-out is at 09:00 AM. Early check-in or late check-out can be arranged on request, subject to availability.</p>
-          </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span>How far is Joe's Nithilam from major cities?</span>
-            <i class="fas fa-plus"></i>
-          </button>
-          <div class="faq-a">
-            <p>Joe's Nithilam is approximately 50 km from Chennai (1–1.10 hrs). We share the exact Google Maps location upon booking.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -916,20 +1018,29 @@
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
-            <span>Can we bring our pets?</span>
+            <span>What can guests do at Joe's Nithilam?</span>
             <i class="fas fa-plus"></i>
           </button>
           <div class="faq-a">
-            <p>Yes! We welcome well-behaved pets. Please inform us while booking so we can make suitable arrangements for your furry friend.</p>
+            <p>Guests can take part in farming activities, interact with farm animals, go on nature walks, enjoy the pumpset and tank, play outdoor and traditional Tamil games, watch the sunset, go bird watching, enjoy a bonfire, listen to music, relax in the garden, and stargaze.</p>
           </div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
-            <span>Is the experience suitable for children?</span>
+            <span>Is Joe's Nithilam suitable for children and family outings?</span>
             <i class="fas fa-plus"></i>
           </button>
           <div class="faq-a">
-            <p>Absolutely! Joe's Nithilam is a paradise for children. Kids love the farm animals, the swimming pond (with adult supervision), outdoor games, and nature exploration. Children below 5 years stay free.</p>
+            <p>Absolutely! Joe's Nithilam is a paradise for children. Kids love the farm animals, farming, nature walks, outdoor and traditional Tamil games, and the pumpset and tank (with adult supervision). Children below 5 years stay free.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            <span>Is Wi-Fi available at the farm?</span>
+            <i class="fas fa-plus"></i>
+          </button>
+          <div class="faq-a">
+            <p>Wi-Fi is currently not available at the farm — we encourage guests to disconnect and fully immerse in the farm experience for a proper digital detox. Mobile network coverage is fully available for most operators.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -941,17 +1052,11 @@
             <p>Cancellations 7+ days before check-in receive a full refund. Cancellations 3–7 days before receive a 50% refund. Cancellations within 3 days are non-refundable. Please contact us directly for special circumstances.</p>
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-q" onclick="toggleFaq(this)">
-            <span>Is Wi-Fi available at the farm?</span>
-            <i class="fas fa-plus"></i>
-          </button>
-          <div class="faq-a">
-            <p>Wi-Fi is currently not available at the farm — we encourage guests to disconnect and fully immerse in the farm experience. Mobile network coverage is fully available for most operators.</p>
-          </div>
-        </div>
       </div>
     </div>
+    <p class="text-center" style="margin-top:32px;">
+      <a href="faq.html" class="btn btn-outline">View All FAQs <i class="fas fa-arrow-right"></i></a>
+    </p>
   </div>
 </section>
 
@@ -1036,20 +1141,23 @@
         <h4>Explore</h4>
         <ul>
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#amenities">Facilities</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="facilities.html">Facilities</a></li>
+          <li><a href="things-to-do.html">Things to Do</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Specials</h4>
+        <h4>Experiences</h4>
         <ul>
-          <li><a href="#specials">Birthday</a></li>
-          <li><a href="#specials">Anniversary</a></li>
-          <li><a href="#specials">School Trips</a></li>
-          <li><a href="#specials">Workcation</a></li>
-          <li><a href="#specials">Family Reunion</a></li>
+          <li><a href="farm-stay-near-chennai.html">Farm Stay Near Chennai</a></li>
+          <li><a href="school-farm-visit-chennai.html">School Farm Visits</a></li>
+          <li><a href="family-farm-outing-chennai.html">Family Farm Outings</a></li>
+          <li><a href="birthday-family-celebrations.html">Birthdays &amp; Celebrations</a></li>
+          <li><a href="farm-stay-couples.html">Farm Stay for Couples</a></li>
+          <li><a href="workcation-group-offsite.html">Workcation &amp; Offsites</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1086,289 +1194,5 @@
 </button>
 
 <script src="js/script.js"></script>
-<script>
-function toggleDropdownPanel(panelId, cardId) {
-  var panel = document.getElementById(panelId);
-  var card  = document.getElementById(cardId);
-  var wasOpen = panel.classList.contains('open');
-
-  document.querySelectorAll('.wellness-panel.open').forEach(function(openPanel) {
-    if (openPanel !== panel) {
-      openPanel.style.maxHeight = '0';
-      openPanel.classList.remove('open');
-    }
-  });
-  document.querySelectorAll('.wellness-toggle-card.active').forEach(function(openCard) {
-    if (openCard !== card) {
-      openCard.classList.remove('active');
-    }
-  });
-
-  if (wasOpen) {
-    panel.style.maxHeight = '0';
-    panel.classList.remove('open');
-    card.classList.remove('active');
-  } else {
-    panel.classList.add('open');
-    panel.style.maxHeight = panel.scrollHeight + 40 + 'px';
-    card.classList.add('active');
-    setTimeout(function() {
-      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  }
-}
-function toggleWellness() {
-  toggleDropdownPanel('wellnessPanel', 'wellnessCard');
-}
-function toggleSchool() {
-  toggleDropdownPanel('schoolPanel', 'schoolCard');
-}
-</script>
-<style>
-.wellness-toggle-card { position: relative; }
-.wellness-toggle-card .wellness-arrow {
-  position: absolute; bottom: 14px; right: 18px;
-  color: #fff; font-size: 1rem; transition: transform 0.3s;
-}
-.wellness-toggle-card.active .wellness-arrow i { transform: rotate(180deg); }
-
-.wellness-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease;
-  background: #fff;
-  border-radius: 16px;
-  margin-top: 24px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
-}
-.wellness-panel.open { max-height: 2000px; }
-
-.wellness-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 28px 28px 20px;
-}
-.wellness-item {
-  perspective: 900px;
-  min-height: 260px;
-  cursor: pointer;
-  border-radius: 14px;
-}
-.wf-inner {
-  position: relative;
-  width: 100%; height: 260px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 14px;
-}
-.wellness-item.flipped .wf-inner { transform: rotateY(180deg); }
-@media (hover: hover) {
-  .wellness-item:hover .wf-inner { transform: rotateY(180deg); }
-}
-.wf-front, .wf-back {
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 14px;
-  overflow: hidden;
-}
-.wf-front {
-  background-size: cover;
-  background-position: center;
-}
-.wf-front-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.68) 35%, rgba(0,0,0,0.08) 70%, transparent 100%);
-}
-.wf-front-label {
-  position: absolute;
-  bottom: 20px; left: 0; right: 0;
-  text-align: center; z-index: 2; padding: 0 14px;
-}
-.wf-icon {
-  width: 48px; height: 48px;
-  background: rgba(255,255,255,0.18);
-  border: 2px solid rgba(255,255,255,0.55);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 10px;
-  font-size: 1.1rem; color: #fff;
-  backdrop-filter: blur(4px);
-}
-.wf-front-label h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.05rem; color: #fff; margin: 0;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.7);
-}
-.wf-tap-hint {
-  display: block;
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.72);
-  margin-top: 6px;
-  letter-spacing: 0.4px;
-}
-.wf-back {
-  transform: rotateY(180deg);
-  background: linear-gradient(145deg, #1e4d2b 0%, #4a7c59 100%);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 28px 20px; text-align: center;
-}
-.wf-back .wf-icon { margin-bottom: 14px; }
-.wf-back h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem; color: #fff; margin-bottom: 12px;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.35);
-}
-.wf-back p { font-size: 0.86rem; color: rgba(255,255,255,0.88); line-height: 1.65; }
-
-.wellness-cta {
-  text-align: center;
-  padding: 16px 28px 28px;
-}
-
-.school-schedule {
-  padding: 4px 28px 8px;
-}
-.school-schedule-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.25rem;
-  color: var(--green-dark, #1a4731);
-  display: flex; align-items: center; gap: 10px;
-  margin: 0 0 6px;
-}
-.school-schedule-title i { color: var(--accent, #f4a261); }
-.school-schedule-sub {
-  font-size: 0.88rem;
-  color: var(--text-muted, #777);
-  margin: 0 0 22px;
-  max-width: 560px;
-}
-.schedule-timeline {
-  position: relative;
-  padding-left: 6px;
-}
-.schedule-timeline::before {
-  content: '';
-  position: absolute;
-  left: 27px; top: 8px; bottom: 8px;
-  width: 2px;
-  background: repeating-linear-gradient(to bottom, var(--green-light, #74c69d) 0, var(--green-light, #74c69d) 6px, transparent 6px, transparent 12px);
-}
-.schedule-item {
-  position: relative;
-  display: grid;
-  grid-template-columns: 110px 44px 1fr;
-  align-items: start;
-  gap: 4px 16px;
-  padding-bottom: 26px;
-}
-.schedule-item:last-child { padding-bottom: 0; }
-.schedule-time {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--green-main, #2d6a4f);
-  padding-top: 8px;
-  text-align: right;
-}
-.schedule-dot {
-  position: relative;
-  z-index: 1;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, var(--green-main, #2d6a4f), var(--green-dark, #1a4731));
-  color: #fff;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1rem;
-  box-shadow: 0 4px 14px rgba(26,71,49,0.35);
-  transition: transform 0.3s ease;
-}
-.schedule-item:hover .schedule-dot { transform: scale(1.1); }
-.schedule-body {
-  background: var(--bg-section, #f0f7f2);
-  border-radius: 12px;
-  padding: 12px 16px;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-.schedule-item:hover .schedule-body {
-  box-shadow: var(--shadow-sm, 0 2px 12px rgba(0,0,0,0.07));
-  transform: translateX(2px);
-}
-.schedule-body h5 {
-  font-size: 1rem;
-  color: var(--text-dark, #1a1a2e);
-  margin: 0 0 4px;
-}
-.schedule-body p {
-  font-size: 0.85rem;
-  color: var(--text-body, #444);
-  line-height: 1.55;
-  margin: 0;
-}
-.activity-chip-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 10px 0 0;
-  padding: 0;
-}
-.activity-chip-list li {
-  background: #fff;
-  border: 1px solid var(--green-light, #74c69d);
-  color: var(--text-body, #444);
-  font-size: 0.8rem;
-  line-height: 1.4;
-  padding: 6px 12px;
-  border-radius: 20px;
-  transition: background 0.25s ease, transform 0.25s ease;
-}
-.activity-chip-list li:hover {
-  background: var(--green-pale, #d8f3dc);
-  transform: translateY(-2px);
-}
-.activity-chip-list.game-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 16px;
-}
-.activity-chip-list.game-list li {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  border-radius: 12px;
-  padding: 0;
-  overflow: hidden;
-  max-width: 100%;
-}
-.activity-chip-list.game-list li img {
-  width: 100%;
-  height: 140px;
-  border-radius: 0;
-  object-fit: cover;
-  object-position: center;
-  flex: none;
-}
-.activity-chip-list.game-list li span {
-  display: block;
-  padding: 10px 12px 12px;
-}
-@media (max-width: 560px) {
-  .schedule-item {
-    grid-template-columns: 44px 1fr;
-  }
-  .schedule-time {
-    grid-column: 1 / -1;
-    text-align: left;
-    padding-top: 0;
-    font-size: 0.85rem;
-    color: var(--accent-dark, #e76f51);
-  }
-  .schedule-dot { width: 38px; height: 38px; font-size: 0.9rem; }
-}
-</style>
 </body>
 </html>

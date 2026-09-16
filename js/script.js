@@ -22,7 +22,12 @@ function endIntro() {
 }
 
 function runIntro() {
-  if (!introLogo || !navLogo || !siteIntro) { endIntro(); return; }
+  let alreadyPlayed = false;
+  try { alreadyPlayed = sessionStorage.getItem('introPlayed') === '1'; } catch (e) {}
+
+  if (!introLogo || !navLogo || !siteIntro || alreadyPlayed) { endIntro(); return; }
+
+  try { sessionStorage.setItem('introPlayed', '1'); } catch (e) {}
 
   const homeRect = navLogo.getBoundingClientRect();
   placeLogoAt(homeRect); // start exactly where the navbar logo sits, matching its look
@@ -140,6 +145,35 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 /* ---- Back to top ---- */
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ---- Toggle / dropdown panels (expand-in-place cards) ---- */
+function toggleDropdownPanel(panelId, cardId) {
+  const panel = document.getElementById(panelId);
+  const card  = document.getElementById(cardId);
+  if (!panel || !card) return;
+  const wasOpen = panel.classList.contains('open');
+
+  document.querySelectorAll('.wellness-panel.open').forEach(openPanel => {
+    if (openPanel !== panel) {
+      openPanel.style.maxHeight = '0';
+      openPanel.classList.remove('open');
+    }
+  });
+  document.querySelectorAll('.wellness-toggle-card.active').forEach(openCard => {
+    if (openCard !== card) openCard.classList.remove('active');
+  });
+
+  if (wasOpen) {
+    panel.style.maxHeight = '0';
+    panel.classList.remove('open');
+    card.classList.remove('active');
+  } else {
+    panel.classList.add('open');
+    panel.style.maxHeight = panel.scrollHeight + 40 + 'px';
+    card.classList.add('active');
+    setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+  }
 }
 
 /* ---- FAQ Accordion ---- */
