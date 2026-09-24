@@ -1277,6 +1277,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transition: opacity 0.25s ease;
 }
 .enquiry-modal.show { opacity: 1; }
+.enquiry-modal[hidden] { display: none; }
 .enquiry-modal-backdrop { position: absolute; inset: 0; background: rgba(15,35,25,0.55); }
 .enquiry-modal-dialog {
   position: relative;
