@@ -386,8 +386,10 @@ function initEnquiryForm(root) {
     if (expectation) lines.push('Looking forward to: ' + expectation);
 
     const url = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent(lines.join('\n'));
-    const win = window.open(url, '_blank', 'noopener');
-    if (!win) window.location.href = url;
+    // 'noopener' would make window.open return null, so detach the opener by hand instead
+    const win = window.open(url, '_blank');
+    if (win) win.opener = null;
+    else window.location.href = url; // popup blocked: open WhatsApp in this tab
   });
 
   return {
