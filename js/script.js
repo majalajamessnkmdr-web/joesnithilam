@@ -290,6 +290,7 @@ document.head.appendChild(style);
 /* ---- Booking enquiry form: collects details and sends them as one WhatsApp message.
         Rendered inline (Contact section) and as a popup opened by Book Now / WhatsApp buttons. ---- */
 const WA_NUMBER = '919884835661';
+const DEFAULT_EXPECT = 'Farm experience';
 
 function enquiryFormHTML(p) {
   return `
@@ -323,7 +324,7 @@ function enquiryFormHTML(p) {
       </div>
       <div class="enquiry-field enquiry-full">
         <label for="${p}Expect">What are you looking forward to?</label>
-        <textarea id="${p}Expect" data-f="expect" rows="3" placeholder="e.g. a quiet family break, kids' activities, a birthday, time in the fields..."></textarea>
+        <textarea id="${p}Expect" data-f="expect" data-auto="${DEFAULT_EXPECT}" rows="3" placeholder="e.g. a quiet family break, kids' activities, a birthday, time in the fields...">${DEFAULT_EXPECT}</textarea>
       </div>
       <p class="enquiry-error enquiry-full" data-f="error" role="alert" hidden></p>
       <div class="enquiry-full">
@@ -401,7 +402,7 @@ function initEnquiryForm(root) {
     setInterest(topic) {
       const box = el('expect');
       if (box.value && box.dataset.auto !== box.value) return;
-      box.value = topic ? 'Interested in: ' + topic : '';
+      box.value = topic ? 'Interested in: ' + topic : DEFAULT_EXPECT;
       box.dataset.auto = box.value;
     },
     focusFirst() { el('name').focus(); }
