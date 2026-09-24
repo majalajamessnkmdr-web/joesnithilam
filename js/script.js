@@ -287,58 +287,91 @@ const style = document.createElement('style');
 style.textContent = '.revealed { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
 
-/* ---- Booking enquiry form: collects details and sends them as one WhatsApp message ---- */
-(function () {
-  const form = document.getElementById('enquiryForm');
-  if (!form) return;
+/* ---- Booking enquiry form: collects details and sends them as one WhatsApp message.
+        Rendered inline (Contact section) and as a popup opened by Book Now / WhatsApp buttons. ---- */
+const WA_NUMBER = '919884835661';
 
-  const daysField = document.getElementById('enqDaysField');
-  const daysInput = document.getElementById('enqDays');
-  const dateLabel = document.getElementById('enqDateLabel');
-  const dateInput = document.getElementById('enqDate');
-  const errorBox  = document.getElementById('enqError');
-  const nameInput   = document.getElementById('enqName');
-  const peopleInput = document.getElementById('enqPeople');
-  const expectInput = document.getElementById('enqExpect');
+function enquiryFormHTML(p) {
+  return `
+    <div class="enquiry-head">
+      <h3 id="${p}Title">Send a Booking Enquiry</h3>
+      <p>Fill in a few details and we'll receive it on WhatsApp in one message.</p>
+    </div>
+    <form class="enquiry-form" novalidate>
+      <div class="enquiry-field enquiry-full">
+        <span class="enquiry-label">Type of visit</span>
+        <div class="enquiry-choice">
+          <label><input type="radio" name="visitType" value="Day trip" checked /> <span><i class="fas fa-sun"></i> Day trip</span></label>
+          <label><input type="radio" name="visitType" value="Stay" /> <span><i class="fas fa-moon"></i> Stay</span></label>
+        </div>
+      </div>
+      <div class="enquiry-field">
+        <label for="${p}Name">Your name</label>
+        <input type="text" id="${p}Name" data-f="name" autocomplete="name" required />
+      </div>
+      <div class="enquiry-field">
+        <label for="${p}People">Number of people</label>
+        <input type="number" id="${p}People" data-f="people" min="1" inputmode="numeric" required />
+      </div>
+      <div class="enquiry-field" data-f="daysField" hidden>
+        <label for="${p}Days">Number of days</label>
+        <input type="number" id="${p}Days" data-f="days" min="1" inputmode="numeric" />
+      </div>
+      <div class="enquiry-field">
+        <label for="${p}Date" data-f="dateLabel">Preferred date</label>
+        <input type="date" id="${p}Date" data-f="date" />
+      </div>
+      <div class="enquiry-field enquiry-full">
+        <label for="${p}Expect">What are you looking forward to?</label>
+        <textarea id="${p}Expect" data-f="expect" rows="3" placeholder="e.g. a quiet family break, kids' activities, a birthday, time in the fields..."></textarea>
+      </div>
+      <p class="enquiry-error enquiry-full" data-f="error" role="alert" hidden></p>
+      <div class="enquiry-full">
+        <button type="submit" class="btn btn-primary enquiry-submit"><i class="fab fa-whatsapp"></i> Send Enquiry on WhatsApp</button>
+      </div>
+    </form>`;
+}
+
+function initEnquiryForm(root) {
+  const form = root.querySelector('.enquiry-form');
+  const el = name => form.querySelector(`[data-f="${name}"]`);
+  const radios = form.querySelectorAll('input[name="visitType"]');
 
   const today = new Date();
-  dateInput.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  el('date').min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
 
-  function visitType() { return form.querySelector('input[name="visitType"]:checked').value; }
-
+  const visitType = () => form.querySelector('input[name="visitType"]:checked').value;
   function syncType() {
     const isStay = visitType() === 'Stay';
-    daysField.hidden = !isStay;
-    daysInput.required = isStay;
-    dateLabel.textContent = isStay ? 'Check-in date' : 'Preferred date';
+    el('daysField').hidden = !isStay;
+    el('dateLabel').textContent = isStay ? 'Check-in date' : 'Preferred date';
   }
-  form.querySelectorAll('input[name="visitType"]').forEach(r => r.addEventListener('change', syncType));
+  radios.forEach(r => r.addEventListener('change', syncType));
   syncType();
 
   function formatDate(value) {
-    if (!value) return '';
     const [y, m, d] = value.split('-').map(Number);
     return new Date(y, m - 1, d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
   }
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const name   = nameInput.value.trim();
-    const people = peopleInput.value.trim();
-    const days   = daysInput.value.trim();
+    const name = el('name').value.trim();
+    const people = el('people').value.trim();
+    const days = el('days').value.trim();
     const isStay = visitType() === 'Stay';
 
     const missing = [];
     form.querySelectorAll('input').forEach(i => i.classList.remove('invalid'));
-    if (!name)                                   { missing.push('your name');        nameInput.classList.add('invalid'); }
-    if (!(Number(people) >= 1))                  { missing.push('number of people'); peopleInput.classList.add('invalid'); }
-    if (isStay && !(Number(days) >= 1))          { missing.push('number of days');   daysInput.classList.add('invalid'); }
+    if (!name)                          { missing.push('your name');        el('name').classList.add('invalid'); }
+    if (!(Number(people) >= 1))         { missing.push('number of people'); el('people').classList.add('invalid'); }
+    if (isStay && !(Number(days) >= 1)) { missing.push('number of days');   el('days').classList.add('invalid'); }
     if (missing.length) {
-      errorBox.textContent = 'Please add ' + missing.join(', ') + '.';
-      errorBox.hidden = false;
+      el('error').textContent = 'Please add ' + missing.join(', ') + '.';
+      el('error').hidden = false;
       return;
     }
-    errorBox.hidden = true;
+    el('error').hidden = true;
 
     const lines = [
       "Hi Joe's Nithilam! I'd like to enquire about a visit.",
@@ -348,12 +381,94 @@ document.head.appendChild(style);
       'Number of people: ' + people
     ];
     if (isStay) lines.push('Number of days: ' + days);
-    if (dateInput.value) lines.push((isStay ? 'Check-in date: ' : 'Preferred date: ') + formatDate(dateInput.value));
-    const expectation = expectInput.value.trim();
+    if (el('date').value) lines.push((isStay ? 'Check-in date: ' : 'Preferred date: ') + formatDate(el('date').value));
+    const expectation = el('expect').value.trim();
     if (expectation) lines.push('Looking forward to: ' + expectation);
 
-    const url = 'https://wa.me/919884835661?text=' + encodeURIComponent(lines.join('\n'));
+    const url = `https://wa.me/${WA_NUMBER}?text=` + encodeURIComponent(lines.join('\n'));
     const win = window.open(url, '_blank', 'noopener');
     if (!win) window.location.href = url;
+  });
+
+  return {
+    setType(type) {
+      radios.forEach(r => { r.checked = r.value === type; });
+      syncType();
+    },
+    // Pre-fill the interest line from the link that opened the form, without overwriting what the visitor typed
+    setInterest(topic) {
+      const box = el('expect');
+      if (box.value && box.dataset.auto !== box.value) return;
+      box.value = topic ? 'Interested in: ' + topic : '';
+      box.dataset.auto = box.value;
+    },
+    focusFirst() { el('name').focus(); }
+  };
+}
+
+(function () {
+  // Inline form(s) in the Contact section
+  document.querySelectorAll('[data-enquiry-inline]').forEach((box, i) => {
+    box.innerHTML = enquiryFormHTML('enqInline' + i);
+    initEnquiryForm(box);
+  });
+
+  // Popup form, opened by Book Now and the floating WhatsApp button
+  const modal = document.createElement('div');
+  modal.className = 'enquiry-modal';
+  modal.hidden = true;
+  modal.innerHTML = `
+    <div class="enquiry-modal-backdrop" data-close></div>
+    <div class="enquiry-box enquiry-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="enqModalTitle">
+      <button type="button" class="enquiry-modal-close" aria-label="Close" data-close><i class="fas fa-times"></i></button>
+      ${enquiryFormHTML('enqModal')}
+    </div>`;
+  document.body.appendChild(modal);
+  const modalForm = initEnquiryForm(modal);
+  let lastTrigger = null;
+
+  function openModal(type, topic, trigger) {
+    lastTrigger = trigger;
+    if (type) modalForm.setType(type);
+    modalForm.setInterest(topic);
+    modal.hidden = false;
+    document.body.classList.add('enquiry-open');
+    requestAnimationFrame(() => modal.classList.add('show'));
+    setTimeout(() => modalForm.focusFirst(), 50);
+  }
+  function closeModal() {
+    modal.classList.remove('show');
+    document.body.classList.remove('enquiry-open');
+    setTimeout(() => { modal.hidden = true; }, 250);
+    if (lastTrigger) lastTrigger.focus();
+  }
+  modal.querySelectorAll('[data-close]').forEach(b => b.addEventListener('click', closeModal));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  // Work out the visit type and topic from the message a WhatsApp link used to carry
+  function linkContext(text) {
+    if (/Weekday stay/.test(text)) return { type: 'Stay', topic: 'Weekday stay' };
+    if (/Weekend stay/.test(text)) return { type: 'Stay', topic: 'Weekend stay' };
+    const m = text.match(/(?:plan an? |know (?:more )?about (?:the |a )?|interested in the )(.+?) at Joe/i);
+    const topic = m && !/^Joe/i.test(m[1]) ? m[1] : null;
+    let type = null;
+    if (topic && /School|Day Trip|Kids|Family Farm Outing/i.test(topic)) type = 'Day trip';
+    if (topic && /Couple|Workcation|farm stay/i.test(topic)) type = 'Stay';
+    return { type, topic };
+  }
+
+  // Every WhatsApp link on the site opens the enquiry form instead
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest(`a[href*="wa.me/${WA_NUMBER}"]`);
+    if (!link) return;
+    e.preventDefault();
+    if (navMenu && navMenu.classList.contains('open')) {
+      navMenu.classList.remove('open');
+      hamburger.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    }
+    const text = decodeURIComponent((link.getAttribute('href').split('text=')[1] || '').replace(/\+/g, ' '));
+    const ctx = linkContext(text);
+    openModal(ctx.type, ctx.topic, link);
   });
 })();

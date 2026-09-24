@@ -178,44 +178,8 @@
       </div>
     </div>
 
-    <div class="enquiry-box" id="enquiry">
-      <div class="enquiry-head">
-        <h3>Send a Booking Enquiry</h3>
-        <p>Fill in a few details and we'll receive it on WhatsApp in one message.</p>
-      </div>
-      <form class="enquiry-form" id="enquiryForm" novalidate>
-        <div class="enquiry-field enquiry-full">
-          <span class="enquiry-label">Type of visit</span>
-          <div class="enquiry-choice">
-            <label><input type="radio" name="visitType" value="Day trip" checked /> <span><i class="fas fa-sun"></i> Day trip</span></label>
-            <label><input type="radio" name="visitType" value="Stay" /> <span><i class="fas fa-moon"></i> Stay</span></label>
-          </div>
-        </div>
-        <div class="enquiry-field">
-          <label for="enqName">Your name</label>
-          <input type="text" id="enqName" name="name" autocomplete="name" required />
-        </div>
-        <div class="enquiry-field">
-          <label for="enqPeople">Number of people</label>
-          <input type="number" id="enqPeople" name="people" min="1" inputmode="numeric" required />
-        </div>
-        <div class="enquiry-field" id="enqDaysField" hidden>
-          <label for="enqDays">Number of days</label>
-          <input type="number" id="enqDays" name="days" min="1" inputmode="numeric" />
-        </div>
-        <div class="enquiry-field">
-          <label for="enqDate" id="enqDateLabel">Preferred date</label>
-          <input type="date" id="enqDate" name="date" />
-        </div>
-        <div class="enquiry-field enquiry-full">
-          <label for="enqExpect">What are you looking forward to?</label>
-          <textarea id="enqExpect" name="expectation" rows="3" placeholder="e.g. a quiet family break, kids' activities, a birthday, time in the fields..."></textarea>
-        </div>
-        <p class="enquiry-error enquiry-full" id="enqError" role="alert" hidden></p>
-        <div class="enquiry-full">
-          <button type="submit" class="btn btn-primary enquiry-submit"><i class="fab fa-whatsapp"></i> Send Enquiry on WhatsApp</button>
-        </div>
-      </form>
+    <div class="enquiry-box" id="enquiry" data-enquiry-inline>
+      <p class="text-center"><a href="https://wa.me/919884835661" class="btn btn-primary" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Enquire on WhatsApp</a></p>
     </div>
 
     <div class="related-pages">
