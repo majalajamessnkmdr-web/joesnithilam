@@ -1134,6 +1134,68 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .back-to-top:hover { background: var(--green-dark); transform: translateY(-3px); }
 
 /* ==============================
+   BOOKING TICKER
+============================== */
+.booking-ticker {
+  position: absolute;
+  top: 100%;
+  left: 0; right: 0;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--green-pale);
+  border-bottom: 1px solid rgba(45,106,79,0.15);
+  color: var(--green-dark);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.booking-ticker.show { opacity: 1; transform: translateY(0); }
+.navbar:has(.nav-menu.open) .booking-ticker { display: none; }
+.booking-ticker-track {
+  display: flex;
+  width: max-content;
+  animation: bookingTickerScroll 40s linear infinite;
+}
+.booking-ticker:hover .booking-ticker-track { animation-play-state: paused; }
+.booking-ticker-group { display: flex; flex-shrink: 0; }
+.booking-ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 48px;
+  white-space: nowrap;
+}
+.booking-ticker-item i { color: var(--green-mid); font-size: 0.8rem; }
+.booking-ticker-item b { color: var(--green-main); font-weight: 600; }
+.booking-ticker-close {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 40px;
+  background: linear-gradient(to right, transparent, var(--green-pale) 35%);
+  border: none;
+  color: var(--green-main);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.booking-ticker-close:hover { color: var(--green-dark); }
+@keyframes bookingTickerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (max-width: 600px) {
+  .booking-ticker { height: 30px; font-size: 0.78rem; }
+  .booking-ticker-track { animation-duration: 28s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .booking-ticker-track { animation-duration: 90s; }
+}
+
+/* ==============================
    RESPONSIVE
 ============================== */
 @media (max-width: 1024px) {

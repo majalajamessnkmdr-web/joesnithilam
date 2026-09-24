@@ -18,7 +18,43 @@ function placeLogoAt(rect) {
 
 function endIntro() {
   document.body.classList.remove('intro-active');
-  siteIntro.style.display = 'none';
+  if (siteIntro) siteIntro.style.display = 'none';
+  setTimeout(showBookingNotice, 500);
+}
+
+/* ---- Booking ticker: a gentle scrolling note under the navbar, until the booked-till date passes ---- */
+const BOOKED_TILL = new Date(2026, 9, 12, 23, 59, 59); // 12 October 2026
+
+function showBookingNotice() {
+  if (new Date() > BOOKED_TILL) return;
+  try { if (sessionStorage.getItem('bookingTickerClosed') === '1') return; } catch (e) {}
+  const nav = document.getElementById('navbar');
+  if (!nav || nav.querySelector('.booking-ticker')) return;
+
+  const message = `
+    <span class="booking-ticker-item"><i class="fas fa-leaf" aria-hidden="true"></i>
+      Thank you for the warm love! We're fully booked until <b>12th October</b> &mdash; we'd be delighted to welcome you after that. Reach out to plan ahead.
+    </span>`;
+
+  const ticker = document.createElement('div');
+  ticker.className = 'booking-ticker';
+  ticker.setAttribute('role', 'status');
+  ticker.innerHTML = `
+    <div class="booking-ticker-track">
+      <div class="booking-ticker-group">${message.repeat(2)}</div>
+      <div class="booking-ticker-group" aria-hidden="true">${message.repeat(2)}</div>
+    </div>
+    <button type="button" class="booking-ticker-close" aria-label="Close notice"><i class="fas fa-times"></i></button>
+  `;
+  nav.appendChild(ticker);
+
+  ticker.querySelector('.booking-ticker-close').addEventListener('click', () => {
+    ticker.classList.remove('show');
+    try { sessionStorage.setItem('bookingTickerClosed', '1'); } catch (e) {}
+    setTimeout(() => ticker.remove(), 500);
+  });
+
+  requestAnimationFrame(() => requestAnimationFrame(() => ticker.classList.add('show')));
 }
 
 function runIntro() {
