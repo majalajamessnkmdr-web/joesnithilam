@@ -286,3 +286,74 @@ document.addEventListener('DOMContentLoaded', () => {
 const style = document.createElement('style');
 style.textContent = '.revealed { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
+
+/* ---- Booking enquiry form: collects details and sends them as one WhatsApp message ---- */
+(function () {
+  const form = document.getElementById('enquiryForm');
+  if (!form) return;
+
+  const daysField = document.getElementById('enqDaysField');
+  const daysInput = document.getElementById('enqDays');
+  const dateLabel = document.getElementById('enqDateLabel');
+  const dateInput = document.getElementById('enqDate');
+  const errorBox  = document.getElementById('enqError');
+  const nameInput   = document.getElementById('enqName');
+  const peopleInput = document.getElementById('enqPeople');
+  const expectInput = document.getElementById('enqExpect');
+
+  const today = new Date();
+  dateInput.min = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+
+  function visitType() { return form.querySelector('input[name="visitType"]:checked').value; }
+
+  function syncType() {
+    const isStay = visitType() === 'Stay';
+    daysField.hidden = !isStay;
+    daysInput.required = isStay;
+    dateLabel.textContent = isStay ? 'Check-in date' : 'Preferred date';
+  }
+  form.querySelectorAll('input[name="visitType"]').forEach(r => r.addEventListener('change', syncType));
+  syncType();
+
+  function formatDate(value) {
+    if (!value) return '';
+    const [y, m, d] = value.split('-').map(Number);
+    return new Date(y, m - 1, d).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name   = nameInput.value.trim();
+    const people = peopleInput.value.trim();
+    const days   = daysInput.value.trim();
+    const isStay = visitType() === 'Stay';
+
+    const missing = [];
+    form.querySelectorAll('input').forEach(i => i.classList.remove('invalid'));
+    if (!name)                                   { missing.push('your name');        nameInput.classList.add('invalid'); }
+    if (!(Number(people) >= 1))                  { missing.push('number of people'); peopleInput.classList.add('invalid'); }
+    if (isStay && !(Number(days) >= 1))          { missing.push('number of days');   daysInput.classList.add('invalid'); }
+    if (missing.length) {
+      errorBox.textContent = 'Please add ' + missing.join(', ') + '.';
+      errorBox.hidden = false;
+      return;
+    }
+    errorBox.hidden = true;
+
+    const lines = [
+      "Hi Joe's Nithilam! I'd like to enquire about a visit.",
+      '',
+      'Name: ' + name,
+      'Type of visit: ' + visitType(),
+      'Number of people: ' + people
+    ];
+    if (isStay) lines.push('Number of days: ' + days);
+    if (dateInput.value) lines.push((isStay ? 'Check-in date: ' : 'Preferred date: ') + formatDate(dateInput.value));
+    const expectation = expectInput.value.trim();
+    if (expectation) lines.push('Looking forward to: ' + expectation);
+
+    const url = 'https://wa.me/919884835661?text=' + encodeURIComponent(lines.join('\n'));
+    const win = window.open(url, '_blank', 'noopener');
+    if (!win) window.location.href = url;
+  });
+})();
