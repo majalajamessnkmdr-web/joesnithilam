@@ -545,6 +545,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #000;
 }
 
+.be-our-guest { margin-top: 64px; text-align: center; }
+.be-our-guest .section-title { margin-bottom: 12px; }
+.guest-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  text-align: left;
+}
+.guest-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-section);
+  border: 2px solid var(--green-pale);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+.guest-list li i { color: var(--green-main); font-size: 1.1rem; width: 22px; text-align: center; }
+
 .about-content .section-title { margin-bottom: 16px; }
 .about-lead { font-size: 1.05rem; color: var(--text-dark); font-weight: 500; margin-bottom: 16px; }
 .about-body { color: var(--text-body); margin-bottom: 12px; }
