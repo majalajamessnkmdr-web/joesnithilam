@@ -303,7 +303,7 @@ function enquiryFormHTML(p) {
         <span class="enquiry-label">Type of visit</span>
         <div class="enquiry-choice">
           <label><input type="radio" name="visitType" value="Day trip" checked /> <span><i class="fas fa-sun"></i> Day trip</span></label>
-          <label><input type="radio" name="visitType" value="Stay" /> <span><i class="fas fa-moon"></i> Stay</span></label>
+          <label><input type="radio" name="visitType" value="Stay" disabled /> <span title="Stays are not open for booking right now"><i class="fas fa-moon"></i> Stay</span></label>
         </div>
       </div>
       <div class="enquiry-field">
@@ -395,7 +395,9 @@ function initEnquiryForm(root) {
 
   return {
     setType(type) {
-      radios.forEach(r => { r.checked = r.value === type; });
+      const target = [...radios].find(r => r.value === type && !r.disabled);
+      if (!target) return; // e.g. Stay is disabled: keep the current choice
+      radios.forEach(r => { r.checked = r === target; });
       syncType();
     },
     // Pre-fill the interest line from the link that opened the form, without overwriting what the visitor typed
