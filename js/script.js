@@ -233,12 +233,21 @@ function toggleFaq(btn) {
 
 /* ---- Gallery Lightbox ---- */
 function openLightbox(el) {
-  const src = el.getAttribute('data-src') || el.querySelector('img').src;
-  const alt = el.querySelector('img').alt;
   const lb  = document.getElementById('lightbox');
   const img = document.getElementById('lightboxImg');
-  img.src = src;
-  img.alt = alt;
+  const vid = document.getElementById('lightboxVideo');
+  const videoSrc = el.getAttribute('data-video');
+  if (videoSrc && vid) {
+    img.hidden = true;
+    vid.hidden = false;
+    vid.src = videoSrc;
+    vid.play().catch(() => {});
+  } else {
+    if (vid) vid.hidden = true;
+    img.hidden = false;
+    img.src = el.getAttribute('data-src') || el.querySelector('img').src;
+    img.alt = el.querySelector('img').alt;
+  }
   lb.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
@@ -246,6 +255,8 @@ function openLightbox(el) {
 function closeLightbox() {
   document.getElementById('lightbox').classList.remove('active');
   document.getElementById('lightboxImg').src = '';
+  const vid = document.getElementById('lightboxVideo');
+  if (vid) { vid.pause(); vid.removeAttribute('src'); vid.load(); }
   document.body.style.overflow = '';
 }
 

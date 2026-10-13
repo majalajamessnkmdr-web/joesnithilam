@@ -179,6 +179,10 @@
         <img src="../images/bird-aviary.jpeg" alt="Bird aviary beside the farmhouse garden with paddy fields behind" loading="lazy" />
         <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
       </div>
+      <div class="gallery-item" data-video="../images/birds.mp4" onclick="openLightbox(this)">
+        <video src="../images/birds.mp4#t=0.1" muted loop autoplay playsinline preload="metadata" aria-label="Birds in the farm aviary"></video>
+        <div class="gallery-overlay"><i class="fas fa-play"></i></div>
+      </div>
       <div class="gallery-item" data-src="../images/8.jpeg" onclick="openLightbox(this)">
         <img src="../images/8.jpeg" alt="Farm photo" loading="lazy" />
         <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
@@ -261,6 +265,7 @@
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
   <img src="" alt="Gallery image" id="lightboxImg" onclick="event.stopPropagation()" />
+  <video id="lightboxVideo" controls playsinline hidden onclick="event.stopPropagation()"></video>
 </div>
 
 
