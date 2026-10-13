@@ -817,13 +817,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
 .gallery-item:hover img { transform: scale(1.08); }
 .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.gallery-subtitle {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  margin: 32px 0 16px;
+.gallery-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 8px 0 28px;
 }
+.gallery-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 26px;
+  border: 2px solid var(--green-dark);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--green-dark);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.gallery-tab:hover { background: rgba(26,71,49,0.08); }
+.gallery-tab.active { background: var(--green-dark); color: var(--white); }
+.gallery-grid[hidden] { display: none; }
 .video-grid .gallery-item:nth-child(n) { grid-column: auto; aspect-ratio: 9/16; }
 .gallery-overlay {
   position: absolute;

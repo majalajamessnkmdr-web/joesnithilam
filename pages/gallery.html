@@ -130,8 +130,11 @@
   <div class="container">
     <p class="section-tag text-center">Gallery</p>
     <h2 class="section-title text-center">Glimpses of Joe's Nithilam</h2>
-    <h3 class="gallery-subtitle">Photos</h3>
-    <div class="gallery-grid">
+    <div class="gallery-tabs" role="tablist">
+      <button class="gallery-tab active" role="tab" aria-selected="true" aria-controls="galleryPhotos" onclick="showGalleryTab(this)"><i class="fas fa-image"></i> Photos</button>
+      <button class="gallery-tab" role="tab" aria-selected="false" aria-controls="galleryVideos" onclick="showGalleryTab(this)"><i class="fas fa-video"></i> Videos</button>
+    </div>
+    <div class="gallery-grid" id="galleryPhotos" role="tabpanel">
       <div class="gallery-item" data-src="../images/gallary1.jpeg" onclick="openLightbox(this)">
         <img src="../images/gallary1.jpeg" alt="Joe's Nithilam farmhouse veranda with carved stone pillars and hibiscus garden" loading="lazy" />
         <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
@@ -229,8 +232,7 @@
         <div class="gallery-overlay"><i class="fas fa-expand-alt"></i></div>
       </div>
     </div>
-    <h3 class="gallery-subtitle">Videos</h3>
-    <div class="gallery-grid video-grid">
+    <div class="gallery-grid video-grid" id="galleryVideos" role="tabpanel" hidden>
       <div class="gallery-item" data-video="../images/birds.mp4" onclick="openLightbox(this)">
         <video src="../images/birds.mp4#t=0.1" muted loop autoplay playsinline preload="metadata" aria-label="Birds in the farm aviary"></video>
         <div class="gallery-overlay"><i class="fas fa-play"></i></div>

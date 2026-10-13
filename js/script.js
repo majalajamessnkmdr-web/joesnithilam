@@ -231,6 +231,18 @@ function toggleFaq(btn) {
   }
 }
 
+/* ---- Gallery Photos / Videos tabs ---- */
+function showGalleryTab(btn) {
+  btn.parentElement.querySelectorAll('.gallery-tab').forEach(tab => {
+    const active = tab === btn;
+    tab.classList.toggle('active', active);
+    tab.setAttribute('aria-selected', active);
+    const panel = document.getElementById(tab.getAttribute('aria-controls'));
+    panel.hidden = !active;
+    if (active) panel.querySelectorAll('video').forEach(v => v.play().catch(() => {}));
+  });
+}
+
 /* ---- Gallery Lightbox ---- */
 function openLightbox(el) {
   const lb  = document.getElementById('lightbox');
